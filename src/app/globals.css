@@ -15,3 +15,30 @@
 .clip-right-triangle {
   clip-path: polygon(100% 0, 100% 100%, 0 100%);
 }
+
+.clip-left {
+
+  clip-path: polygon(0% 0,
+      100% 100%,
+      0 100%);
+}
+
+.clip-right {
+  /* clip-path: polygon(20% 100%, 100% 100%, 100% 0, 0 0); */
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
+}
+
+.clip-left-dark {
+  clip-path: polygon(0 0,
+      100% 0,
+      0% 100%,
+      0% 100%);
+}
+
+.clip-right-dark {
+  /* clip-path: polygon(20% 100%, 100% 100%, 100% 0, 0 0); */
+  clip-path: polygon(0 0,
+      100% 0,
+      100% 100%,
+      100% 100%);
+}
