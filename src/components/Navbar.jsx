@@ -11,8 +11,8 @@ import { CiMedicalCross } from "react-icons/ci";
 const Navbar = () => {
   // TODO: add links
   return (
-    <div className="w-full">
-      <div className="navbar bg-neutral text-neutral-content shadow-sm max-w-7xl  mx-auto relative   pl-4 pr-6">
+    <div className="w-full sticky top-0">
+      <div className="navbar bg-neutral text-neutral-content shadow-sm max-w-7xl  mx-auto relative   pl-4 pr-6 ">
         {/* White Clipped Edges */}
         <div className="hidden lg:block absolute left-0 top-0 bottom-0 w-6 bg-white clip-left-dark" />
         <div className="hidden lg:block absolute right-0 top-0 bottom-0 w-6 bg-white clip-right-dark" />
