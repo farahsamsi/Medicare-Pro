@@ -10,7 +10,36 @@ import {
   FaArrowLeft,
 } from "react-icons/fa";
 
-export default function RegisterPage() {
+import { useState } from "react";
+import AdminCredentials from "../component/AdminCredentials";
+
+export default function AdminLogin() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    try {
+      const res = await fetch(
+        "https://medicare-pro-backend.vercel.app/api/v1/auth/login",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, password }),
+        }
+      );
+
+      const data = await res.json();
+
+      console.log(data);
+    } catch (err) {
+      alert("Something went wrong");
+    }
+  };
+
+  console.log({ email, password });
+
   return (
     <div className="min-h-screen grid grid-cols-1 md:grid-cols-2 ">
       {/* Left - Form */}
@@ -27,28 +56,48 @@ export default function RegisterPage() {
           </div>
 
           {/* Logo */}
-          <h1 className="text-4xl font-bold mb-8 tracking-tight">
+          <h1 className="text-4xl font-bold  tracking-tight">
             <span>Medicare</span>
             <span className="text-primary"> Pro</span>
           </h1>
 
           {/* Form  */}
           <div className="w-full max-w-md space-y-6">
-            <input
-              type="text"
-              placeholder="Full Name"
-              className="w-full border rounded-md px-4 py-3 text-sm focus:outline-none"
-            />
-            <input
-              type="email"
-              placeholder="Email Address"
-              className="w-full border rounded-md px-4 py-3 text-sm focus:outline-none"
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              className="w-full border rounded-md px-4 py-3 text-sm focus:outline-none"
-            />
+            <form
+              onSubmit={handleLogin}
+              className="bg-white p-8 rounded shadow-md w-full max-w-md space-y-4"
+            >
+              <h1 className="text-2xl font-bold text-center mb-4">
+                Admin Login
+              </h1>
+              <label className="label">Email</label>
+              <input
+                type="email"
+                placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full border px-4 py-2 rounded"
+                required
+              />
+              <label className="label">Password</label>
+              <input
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full border px-4 py-2 rounded"
+                required
+              />
+              <button
+                type="submit"
+                className="w-full font-semibold btn btn-primary"
+              >
+                Login
+              </button>
+            </form>
+            <div>
+              <AdminCredentials></AdminCredentials>
+            </div>
 
             {/* Terms */}
             <div className="flex items-center space-x-2 text-sm">
@@ -59,14 +108,6 @@ export default function RegisterPage() {
                 <a className="text-primary hover:underline">Privacy Policy</a>.
               </p>
             </div>
-
-            {/* Submit form button */}
-            <button className="w-full btn btn-primary font-medium ">
-              Register
-            </button>
-
-            {/* Divider */}
-            <div className="text-center text-sm text-gray-500">OR</div>
 
             {/* Social Buttons */}
             <div className="flex justify-center gap-4">
@@ -86,13 +127,8 @@ export default function RegisterPage() {
 
             {/* login in link */}
             <p className="text-center text-sm mt-4">
-              Already have an account?{" "}
-              <Link
-                href="/admin/login"
-                className="text-primary hover:underline"
-              >
-                Login
-              </Link>
+              Do not have an Account?{" "}
+              <a className="text-primary hover:underline">Register Now</a>
             </p>
           </div>
         </div>
@@ -103,7 +139,7 @@ export default function RegisterPage() {
         className=" bg-cover bg-center bg-no-repeat"
         style={{
           backgroundImage:
-            "url('https://images.unsplash.com/vector-1738918991742-43d7f0ce128f?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
+            "url('https://images.unsplash.com/vector-1738918824727-ef952a30ae5d?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
         }}
       ></div>
     </div>

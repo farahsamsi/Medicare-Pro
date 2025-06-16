@@ -12,7 +12,7 @@ export default function Banner() {
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* Admin Section */}
         <div className="bg-white rounded-xl p-8 text-center shadow-md">
-          <div className="flex justify-center mb-4 text-blue-600 text-4xl">
+          <div className="flex justify-center mb-4 text-primary text-4xl">
             <FaLock />
           </div>
           <h2 className="text-2xl font-bold mb-2">For Admins</h2>
@@ -21,20 +21,22 @@ export default function Banner() {
             for streamlined admin control.
           </p>
           <Link href="/admin/register">
-            <button className="bg-blue-600 text-white px-6 py-2 rounded-md font-medium hover:bg-blue-700 transition mb-2">
+            <button className="hover:scale-105 transition ease-in-out btn btn-primary mb-2">
               Admin Registration
             </button>
           </Link>
           <div>
-            <button className="text-blue-800 font-semibold hover:underline">
-              Admin Login
-            </button>
+            <Link href="/admin/login">
+              <button className="hover:scale-105 transition ease-in-out text-primary font-semibold hover:underline">
+                Admin Login
+              </button>
+            </Link>
           </div>
         </div>
 
         {/* Doctor Section */}
         <div className="bg-white rounded-xl p-8 text-center shadow-md">
-          <div className="flex justify-center mb-4 text-blue-600 text-4xl">
+          <div className="flex justify-center mb-4 text-primary text-4xl">
             <FaStethoscope />
           </div>
           <h2 className="text-2xl font-bold mb-2">For Doctors</h2>
@@ -42,7 +44,7 @@ export default function Banner() {
             Use Medicare Pro to manage your assistants and optimize your
             practice operations efficiently.
           </p>
-          <button className="bg-blue-600 text-white px-6 py-2 rounded-md font-medium hover:bg-blue-700 transition">
+          <button className="hover:scale-105 transition ease-in-out btn btn-primary">
             Doctor Login
           </button>
         </div>
