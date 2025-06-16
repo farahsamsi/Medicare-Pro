@@ -1,6 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ScrollToTopButton from "@/components/ScrollToTopButton";
+import ReduxWrapper from "@/provider/ReduxWrapper";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,15 +21,17 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <div className="relative">
-          {children}
-          {/* Scroll to top (floating button) */}
-          <ScrollToTopButton></ScrollToTopButton>
-        </div>
-      </body>
+      <ReduxWrapper>
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        >
+          <div className="relative">
+            {children}
+            {/* Scroll to top (floating button) */}
+            <ScrollToTopButton></ScrollToTopButton>
+          </div>
+        </body>
+      </ReduxWrapper>
     </html>
   );
 }

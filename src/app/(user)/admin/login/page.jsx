@@ -6,39 +6,53 @@ import {
   FaTwitter,
   FaGoogle,
   FaLinkedinIn,
-  FaPlay,
   FaArrowLeft,
 } from "react-icons/fa";
 
 import { useState } from "react";
-import AdminCredentials from "../component/AdminCredentials";
+import { useLoginAdminMutation } from "@/provider/query/authApi";
+import Swal from "sweetalert2";
 
 export default function AdminLogin() {
+  const [loginAdmin, { isLoading, isError, error }] = useLoginAdminMutation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    try {
-      const res = await fetch(
-        "https://medicare-pro-backend.vercel.app/api/v1/auth/login",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email, password }),
-        }
-      );
-
-      const data = await res.json();
-
-      console.log(data);
-    } catch (err) {
-      alert("Something went wrong");
+    const result = await loginAdmin({ email, password });
+    if (result?.data) {
+      Swal.fire({
+        icon: "success",
+        html: `
+                <p><strong>Login Successful</p>
+              `,
+      });
+      setEmail("");
+      setPassword("");
+      return;
+    }
+    if (result?.error) {
+      console.log(error);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        html: `
+                <p><strong>Error Status:</strong> ${error?.status || "404"}</p>
+                <p>${error?.data?.message || "User not found"}</p>
+              `,
+      });
+      setEmail("");
+      setPassword("");
+      return;
     }
   };
 
-  console.log({ email, password });
+  const fillDemoCredentials = () => {
+    setEmail(process.env.NEXT_PUBLIC_ADMIN_EMAIL || "");
+    setPassword(process.env.NEXT_PUBLIC_ADMIN_PASSWORD || "");
+  };
 
   return (
     <div className="min-h-screen grid grid-cols-1 md:grid-cols-2 ">
@@ -88,16 +102,26 @@ export default function AdminLogin() {
                 className="w-full border px-4 py-2 rounded"
                 required
               />
+
+              {/* Submit button */}
               <button
                 type="submit"
+                disabled={isLoading}
                 className="w-full font-semibold btn btn-primary"
               >
-                Login
+                {isLoading ? `Please Wait..` : `Login`}
+              </button>
+
+              {/* use demo credentials button */}
+              <button
+                type="button"
+                onClick={fillDemoCredentials}
+                className="w-full btn btn-outline"
+                title="Click to fill the email and password field automatically"
+              >
+                Use Demo Credentials
               </button>
             </form>
-            <div>
-              <AdminCredentials></AdminCredentials>
-            </div>
 
             {/* Terms */}
             <div className="flex items-center space-x-2 text-sm">

@@ -1,0 +1,20 @@
+// src/features/auth/authApi.js
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+
+export const authApi = createApi({
+  reducerPath: "authApi",
+  baseQuery: fetchBaseQuery({
+    baseUrl: "https://medicare-pro-backend.vercel.app",
+  }),
+  endpoints: (builder) => ({
+    loginAdmin: builder.mutation({
+      query: (credentials) => ({
+        url: "/api/v1/auth/login",
+        method: "POST",
+        body: credentials,
+      }),
+    }),
+  }),
+});
+
+export const { useLoginAdminMutation } = authApi;
