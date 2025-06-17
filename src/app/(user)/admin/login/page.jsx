@@ -12,29 +12,26 @@ import {
 import { useState } from "react";
 import { useLoginAdminMutation } from "@/provider/query/authApi";
 import Swal from "sweetalert2";
+import { useRouter } from "next/navigation";
 
 export default function AdminLogin() {
   const [loginAdmin, { isLoading, isError, error }] = useLoginAdminMutation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const router = useRouter();
 
   const handleLogin = async (e) => {
     e.preventDefault();
 
     const result = await loginAdmin({ email, password });
     if (result?.data) {
-      Swal.fire({
-        icon: "success",
-        html: `
-                <p><strong>Login Successful</p>
-              `,
-      });
+      localStorage.setItem("token", result.data.token);
+      router.push("/admin-dashboard");
       setEmail("");
       setPassword("");
       return;
     }
     if (result?.error) {
-      console.log(error);
       Swal.fire({
         icon: "error",
         title: "Oops...",
