@@ -106,7 +106,14 @@ export default function AdminLogin() {
                 disabled={isLoading}
                 className="w-full font-semibold btn btn-primary"
               >
-                {isLoading ? `Please Wait..` : `Login`}
+                {isLoading ? (
+                  <span>
+                    `Please Wait..`{" "}
+                    <span className="loading loading-spinner loading-xl"></span>
+                  </span>
+                ) : (
+                  `Login`
+                )}
               </button>
 
               {/* use demo credentials button */}

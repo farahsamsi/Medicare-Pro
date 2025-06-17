@@ -22,8 +22,6 @@ export default function AdminSidebarLayout({ children }) {
     setSidebarOpen(!sidebarOpen);
   };
 
-  console.log(sidebarOpen);
-
   const navLinks = [
     { label: "Dashboard", icon: <FaChartBar />, href: "/admin-dashboard" },
     {

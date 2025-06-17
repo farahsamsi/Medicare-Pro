@@ -6,15 +6,26 @@ export const authApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: "https://medicare-pro-backend.vercel.app",
   }),
-  endpoints: (builder) => ({
-    loginAdmin: builder.mutation({
-      query: (credentials) => ({
-        url: "/api/v1/auth/login",
-        method: "POST",
-        body: credentials,
+
+  endpoints: (builder) => {
+    return {
+      loginAdmin: builder.mutation({
+        query: (credentials) => ({
+          url: "/api/v1/auth/login",
+          method: "POST",
+          body: credentials,
+        }),
       }),
-    }),
-  }),
+
+      // TODO: this is not working
+      getAllUser: builder.query({
+        query: () => ({
+          url: "/api/v1/admin/users",
+          method: "GET",
+        }),
+      }),
+    };
+  },
 });
 
-export const { useLoginAdminMutation } = authApi;
+export const { useLoginAdminMutation, useGetAllUserQuery } = authApi;
