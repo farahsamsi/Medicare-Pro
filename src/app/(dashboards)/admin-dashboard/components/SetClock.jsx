@@ -12,7 +12,7 @@ export default function SetClock() {
   }, []);
 
   return (
-    <div className=" w-full p-2 flex items-center justify-center">
+    <div className=" w-full pt-4 flex items-center justify-center">
       <Clock value={value} renderNumbers={true} />;
     </div>
   );
