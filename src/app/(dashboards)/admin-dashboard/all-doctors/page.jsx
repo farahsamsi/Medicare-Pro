@@ -35,8 +35,8 @@ export default function AllDoctorsPage() {
               <th>Email</th>
               <th>Specialization</th>
               <th>Status</th>
-              <th>Subscription Start Date</th>
-              <th>Subscription End Date</th>
+              <th>Subscription Start </th>
+              <th>Subscription End </th>
             </tr>
           </thead>
           <tbody>
