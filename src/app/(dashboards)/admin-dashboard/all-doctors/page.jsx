@@ -1,5 +1,6 @@
 import React from "react";
 import moment from "moment";
+import AdminQuery from "./components/AdminQuery";
 
 export default function AllDoctorsPage() {
   // TODO: make this dynamic
@@ -25,6 +26,7 @@ export default function AllDoctorsPage() {
   return (
     <div className="py-5">
       <h1 className="text-xl font-bold text-center">All Doctors</h1>
+      <AdminQuery></AdminQuery>
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}
