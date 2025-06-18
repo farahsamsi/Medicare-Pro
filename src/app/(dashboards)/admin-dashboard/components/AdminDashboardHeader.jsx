@@ -17,23 +17,31 @@ export default function AdminDashboardHeader({ onMenuClick }) {
       <div className="flex items-center gap-4">
         <button
           onClick={onMenuClick}
+          title="Toggle Side Bar"
           className="text-gray-500 hover:text-black text-lg cursor-pointer"
         >
           <FaBars />
         </button>
-        <FaSyncAlt className="text-gray-500 hover:text-black text-lg cursor-pointer" />
+        <FaSyncAlt
+          title="Refresh Page"
+          onClick={() => window.location.reload()}
+          className="text-gray-500 hover:text-black text-lg cursor-pointer"
+        />
         <FaTh className="text-gray-500 hover:text-black text-lg cursor-pointer" />
         <div className="w-px h-5 bg-gray-300 mx-2" />
       </div>
 
       {/* Center field */}
-      <div className="hidden md:flex items-center gap-2 text-gray-500 text-sm">
+      <div
+        title="UI only"
+        className="hidden md:flex items-center gap-2 text-gray-500 text-sm"
+      >
         <FaSearch />
         <span className="text-gray-500">Search Dashboard</span>
       </div>
 
       {/* Right: Profile & Actions */}
-      <div className="flex items-center gap-4">
+      <div title="UI only" className="flex items-center gap-4">
         {/* Profile Picture */}
         <div className="relative">
           <Image
