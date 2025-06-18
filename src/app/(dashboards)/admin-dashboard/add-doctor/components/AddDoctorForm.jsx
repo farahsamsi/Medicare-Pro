@@ -1,4 +1,5 @@
 "use client";
+import { useAddDoctorMutation } from "@/provider/query/authApi";
 import { useState } from "react";
 import {
   FaUser,
@@ -9,6 +10,8 @@ import {
 } from "react-icons/fa";
 
 export default function AddDoctorForm() {
+  const [addDoctor, { isLoading, isError, error }] = useAddDoctorMutation();
+
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -19,9 +22,41 @@ export default function AddDoctorForm() {
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Doctor Info:", form);
+
+    const doctorInfo = {
+      ...form,
+      role: "doctor",
+      status: "approved",
+      //   TODO: make this plan id from all subscriptions dynamic data dropdown
+      planId: "685132e7b5ccc078a6091fbe",
+      subscription: {
+        planId: "6851a8e6ef37864d7d429460",
+        startDate: "2025-06-18T06:11:28.468Z",
+        endDate: "2025-07-18T06:11:28.468Z",
+        isActive: true,
+      },
+    };
+
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Add Doctor!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        const result = await addDoctor(doctorInfo);
+        Swal.fire({
+          title: "Added!",
+          text: `${result?.data?.message}`,
+          icon: "success",
+        });
+      }
+    });
   };
 
   const passwordStrength = () => {
@@ -105,9 +140,13 @@ export default function AddDoctorForm() {
 
           {/* Buttons */}
           <div className="flex w-full justify-center mt-4">
-            <button type="submit" className="btn btn-primary font-bold">
+            <button
+              disabled={isLoading}
+              type="submit"
+              className="btn btn-primary font-bold"
+            >
               <FaUserPlus></FaUserPlus>
-              Add Doctor
+              {isLoading ? "Please Wait.." : "Add Doctor"}
             </button>
           </div>
         </form>

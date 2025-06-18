@@ -26,6 +26,14 @@ export const authApi = createApi({
         }),
       }),
 
+      addDoctor: builder.mutation({
+        query: (doctorInfo) => ({
+          url: "/api/v1/admin/create-doctor",
+          method: "POST",
+          body: doctorInfo,
+        }),
+      }),
+
       getAllUser: builder.query({
         query: () => ({
           url: "/api/v1/admin/users",
@@ -47,4 +55,5 @@ export const {
   useLoginAdminMutation,
   useGetAllUserQuery,
   useGetAllSubscriptionsQuery,
+  useAddDoctorMutation,
 } = authApi;
