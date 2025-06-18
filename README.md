@@ -1,36 +1,98 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🩺 Medicare Pro
 
-## Getting Started
+A modern SaaS-based medical management platform where **Admins manage Doctors**, and **Doctors manage Assistants** — powered by **Next.js**, **Redux Toolkit**, **Tailwind CSS (DaisyUI)**, and **REST APIs**.
 
-First, run the development server:
+---
+
+## 🚀 Features
+
+### 🔑 Authentication
+
+- Admin & Doctor login (token-based)
+
+### 👨‍⚕️ Admin Panel
+
+- Add, View, and Manage Doctors
+- View subscription info & status
+- Filter & sort doctors by expiry
+- Create, manage and delete subscription plans
+
+### 👩‍⚕️ Doctor Panel
+
+- Add, Edit, and Delete Assistants
+- View personal profile & subscription
+- Doctor-only dashboard
+- Manage schedule & patient modules _(planned)_
+
+### 💳 Subscription System
+
+- Add/Edit/Delete subscription plans (Admin only)
+- View all available plans (Doctor)
+- Dynamic status badge: `Active`, `Expiring Soon`, `Expired`
+
+---
+
+## 🛠️ Tech Stack
+
+| Tech                                                         | Description                       |
+| ------------------------------------------------------------ | --------------------------------- |
+| [Next.js](https://nextjs.org/)                               | React Framework for SSR & routing |
+| [RTK Query](https://redux-toolkit.js.org/rtk-query/overview) | Data fetching and caching         |
+| [Tailwind CSS](https://tailwindcss.com/)                     | Utility-first CSS framework       |
+| [DaisyUI](https://daisyui.com/)                              | UI components built on Tailwind   |
+| [React Icons](https://react-icons.github.io/react-icons/)    | Icon library integration          |
+
+---
+
+---
+
+## ⚙️ Setup Instructions
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/farahsamsi/Medicare-Pro.git
+cd medicare-pro
+```
+
+### 2. Install dependencies
+
+```bash
+npm install
+```
+
+### 3. Start development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 4. Production build
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+```bash
+npm run build
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🔐 API Configuration
 
-To learn more about Next.js, take a look at the following resources:
+**Base URL:**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```txt
+https://medicare-pro-backend.vercel.app/
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+**Token storage for protected routes:**
 
-## Deploy on Vercel
+```js
+localStorage.setItem("token", YOUR_TOKEN);
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+> 📬 Full Postman Collection: [Click here to view](https://www.postman.com/trilia-devshare-team/frontend-task/collection/5g3lx5c/doctor-managements?action=share&source=copy-link&creator=45899895)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## ⭐️ Support & Feedback
+
+If you find this project helpful, feel free to ⭐️ star the repo.
