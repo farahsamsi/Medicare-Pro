@@ -11,7 +11,15 @@ import {
 
 export default function DoctorDashboardHomePage() {
   const { data, isLoading } = useGetDoctorMySiteQuery();
-  const { doctor } = data;
+
+  if (isLoading)
+    return (
+      <div className="w-full min-h-screen flex justify-center items-center">
+        <span className="loading loading-ring loading-xl"></span>
+      </div>
+    );
+
+  const doctor = data?.doctor;
 
   const { name, email, role, status, subscription, createdAt, updatedAt } =
     doctor || {};

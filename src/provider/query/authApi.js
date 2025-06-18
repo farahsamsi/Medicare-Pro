@@ -42,6 +42,20 @@ export const authApi = createApi({
         }),
       }),
 
+      getAllMyAssistants: builder.query({
+        query: () => ({
+          url: "/api/v1/doctor/assistants",
+          method: "GET",
+        }),
+      }),
+
+      deleteAssistant: builder.mutation({
+        query: (assistantId) => ({
+          url: `/api/v1/doctor/assistants/${assistantId}`,
+          method: "DELETE",
+        }),
+      }),
+
       getAllUser: builder.query({
         query: () => ({
           url: "/api/v1/admin/users",
@@ -73,4 +87,6 @@ export const {
   useAddDoctorMutation,
   useGetDoctorMySiteQuery,
   useAddAssistantMutation,
+  useGetAllMyAssistantsQuery,
+  useDeleteAssistantMutation,
 } = authApi;

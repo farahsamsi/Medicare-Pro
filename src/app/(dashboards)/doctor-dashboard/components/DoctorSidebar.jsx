@@ -28,11 +28,11 @@ export default function DoctorSidebar({ children }) {
       icon: <FaUserPlus />,
       href: "/doctor-dashboard/add-assistant",
     },
-    // {
-    //   label: "Add Doctor",
-    //   icon: <FaUserMd />,
-    //   href: "/admin-dashboard/add-doctor",
-    // },
+    {
+      label: "My Assistants",
+      icon: <FaUserMd />,
+      href: "/doctor-dashboard/my-assistants",
+    },
     {
       label: "Subscription",
       icon: <FaFileMedical />,
