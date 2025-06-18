@@ -56,6 +56,14 @@ export const authApi = createApi({
         }),
       }),
 
+      updateAssistant: builder.mutation({
+        query: (assistantId, updatedDoc) => ({
+          url: `/api/v1/doctor/assistants/${assistantId}`,
+          method: "PATCH",
+          body: updatedDoc,
+        }),
+      }),
+
       getAllUser: builder.query({
         query: () => ({
           url: "/api/v1/admin/users",
@@ -89,4 +97,5 @@ export const {
   useAddAssistantMutation,
   useGetAllMyAssistantsQuery,
   useDeleteAssistantMutation,
+  useUpdateAssistantMutation,
 } = authApi;
