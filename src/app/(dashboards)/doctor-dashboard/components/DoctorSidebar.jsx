@@ -36,7 +36,7 @@ export default function DoctorSidebar({ children }) {
     {
       label: "Subscription",
       icon: <FaFileMedical />,
-      href: "",
+      href: "/doctor-dashboard/subscriptions",
     },
   ];
 

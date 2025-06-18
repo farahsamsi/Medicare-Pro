@@ -1,5 +1,6 @@
 "use client";
 import { useAddAssistantMutation } from "@/provider/query/authApi";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import {
   FaUser,
@@ -12,6 +13,7 @@ import Swal from "sweetalert2";
 
 export default function AddAssistantForm() {
   const [addAssistant, { isLoading }] = useAddAssistantMutation();
+  const router = useRouter();
 
   const [form, setForm] = useState({
     name: "",
@@ -66,6 +68,7 @@ export default function AddAssistantForm() {
               manageSchedule: false,
             },
           });
+          router.replace("/doctor-dashboard/my-assistants");
         }
         if (result?.error) {
           Swal.fire({
