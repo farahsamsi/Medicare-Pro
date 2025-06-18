@@ -12,6 +12,7 @@ import {
   FaDownload,
   FaPlus,
 } from "react-icons/fa";
+import Link from "next/link";
 
 export default function AllDoctorsPage() {
   const { data: users, isLoading } = useGetAllUserQuery();
@@ -168,11 +169,13 @@ export default function AllDoctorsPage() {
           </div>
         </div>
 
-        {/* Right Buttons */}
+        {/* Right Buttons : Add doctor */}
         <div className="flex justify-center items-center gap-2">
-          <button className="btn btn-primary btn-sm text-white font-bold">
-            <FaPlus className="mr-2" /> Add Doctor
-          </button>
+          <Link href="/admin-dashboard/add-doctor">
+            <button className="btn btn-primary btn-sm text-white font-bold">
+              <FaPlus className="mr-2" /> Add Doctor
+            </button>
+          </Link>
         </div>
       </div>
 

@@ -2,15 +2,14 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   FaUserMd,
   FaChartBar,
   FaFileMedical,
-  FaSignOutAlt,
-  FaBars,
   FaHome,
   FaEnvelope,
+  FaUserPlus,
 } from "react-icons/fa";
 import AdminDashboardHeader from "./AdminDashboardHeader";
 
@@ -30,9 +29,14 @@ export default function AdminSidebarLayout({ children }) {
       href: "/admin-dashboard/all-doctors",
     },
     {
+      label: "Add Doctor",
+      icon: <FaUserPlus />,
+      href: "/admin-dashboard/add-doctor",
+    },
+    {
       label: "Subscriptions",
       icon: <FaFileMedical />,
-      href: "/dashboard/admin/subscriptions",
+      href: "/admin-dashboard/subscriptions",
     },
   ];
 
