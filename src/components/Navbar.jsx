@@ -10,6 +10,17 @@ import { CiMedicalCross } from "react-icons/ci";
 
 const Navbar = () => {
   // TODO: add links
+  const links = (
+    <>
+      <li>
+        <a>Home</a>
+      </li>
+
+      <li>
+        <a>Dashboard</a>
+      </li>
+    </>
+  );
   return (
     <div className="w-full sticky top-0">
       <div className="navbar bg-neutral text-neutral-content shadow-sm max-w-7xl  mx-auto relative   pl-4 pr-6 ">
@@ -45,23 +56,7 @@ const Navbar = () => {
                 tabIndex={0}
                 className="menu menu-sm dropdown-content bg-neutral text-neutral-content rounded-box z-1 mt-3 w-52 p-2 shadow"
               >
-                <li>
-                  <a>Item 1</a>
-                </li>
-                <li>
-                  <a>Parent</a>
-                  <ul className="p-2">
-                    <li>
-                      <a>Submenu 1</a>
-                    </li>
-                    <li>
-                      <a>Submenu 2</a>
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  <a>Item 3</a>
-                </li>
+                {links}
               </ul>
             </div>
             {/* Link to home page */}
@@ -71,31 +66,11 @@ const Navbar = () => {
             </a>
           </div>
           <div className="navbar-center hidden lg:flex">
-            <ul className="menu menu-horizontal px-1">
-              <li>
-                <a>Item 1</a>
-              </li>
-              <li>
-                <details>
-                  <summary>Parent</summary>
-                  <ul className="p-2">
-                    <li>
-                      <a>Submenu 1</a>
-                    </li>
-                    <li>
-                      <a>Submenu 2</a>
-                    </li>
-                  </ul>
-                </details>
-              </li>
-              <li>
-                <a>Item 3</a>
-              </li>
-            </ul>
+            <ul className="menu menu-horizontal px-1">{links}</ul>
           </div>
           <div className="navbar-end md:gap-4">
             {/* TODO: add theme toggle */}
-            <label className="toggle text-base-content bg-white ">
+            {/* <label className="toggle text-base-content bg-white ">
               <input
                 type="checkbox"
                 value="synthwave"
@@ -141,7 +116,7 @@ const Navbar = () => {
                   <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
                 </g>
               </svg>
-            </label>
+            </label> */}
             <button className="hidden md:flex items-center gap-2 btn btn-primary text-sm ">
               <FaCalendarAlt />
               Book A Schedule

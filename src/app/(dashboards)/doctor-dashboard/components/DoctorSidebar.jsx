@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import {
   FaUserMd,
@@ -10,10 +10,13 @@ import {
   FaHome,
   FaEnvelope,
   FaUserPlus,
+  FaSignOutAlt,
 } from "react-icons/fa";
 import DoctorDashboardHeader from "./DoctorDashboardHeader";
+import Swal from "sweetalert2";
 
 export default function DoctorSidebar({ children }) {
+  const router = useRouter();
   const pathname = usePathname();
   const [sidebarOpen, setSidebarOpen] = useState(true);
 
@@ -40,6 +43,32 @@ export default function DoctorSidebar({ children }) {
     },
   ];
 
+  const logout = () => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You want to logout!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Logout!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+        router.replace("/");
+
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Logout Successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    });
+  };
+
   return (
     <div className="min-h-screen flex bg-[#0b1120] text-white relative">
       {/* Sidebar */}
@@ -56,6 +85,7 @@ export default function DoctorSidebar({ children }) {
             {/* Home link Button */}
             <div className="flex items-center gap-1">
               <Link
+                onClick={logout}
                 href="/"
                 className="w-10 h-10 flex items-center justify-center bg-[#121519] hover:bg-[#2a2d33] transition"
                 title="Go To Home Page"
@@ -83,6 +113,16 @@ export default function DoctorSidebar({ children }) {
                 </Link>
               );
             })}
+            <Link
+              href=""
+              className={`flex items-center gap-2 px-3 py-2 rounded-md text-sm transition `}
+              onClick={logout}
+            >
+              <span className="text-base">
+                <FaSignOutAlt />
+              </span>
+              <span>Logout</span>
+            </Link>
           </nav>
         </aside>
       )}
