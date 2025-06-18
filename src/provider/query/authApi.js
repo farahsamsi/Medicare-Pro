@@ -5,6 +5,15 @@ export const authApi = createApi({
   reducerPath: "authApi",
   baseQuery: fetchBaseQuery({
     baseUrl: "https://medicare-pro-backend.vercel.app",
+    prepareHeaders: (headers) => {
+      const token = localStorage.getItem("token");
+
+      if (token) {
+        headers.set("authorization", `Bearer ${token}`);
+      }
+
+      return headers;
+    },
   }),
 
   endpoints: (builder) => {
@@ -17,10 +26,16 @@ export const authApi = createApi({
         }),
       }),
 
-      // TODO: this is not working
       getAllUser: builder.query({
         query: () => ({
           url: "/api/v1/admin/users",
+          method: "GET",
+        }),
+      }),
+
+      getAllSubscriptions: builder.query({
+        query: () => ({
+          url: "/api/v1/admin/plans",
           method: "GET",
         }),
       }),
@@ -28,4 +43,8 @@ export const authApi = createApi({
   },
 });
 
-export const { useLoginAdminMutation, useGetAllUserQuery } = authApi;
+export const {
+  useLoginAdminMutation,
+  useGetAllUserQuery,
+  useGetAllSubscriptionsQuery,
+} = authApi;

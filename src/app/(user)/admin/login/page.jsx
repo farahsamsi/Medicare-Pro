@@ -25,7 +25,9 @@ export default function AdminLogin() {
 
     const result = await loginAdmin({ email, password });
     if (result?.data) {
-      localStorage.setItem("token", result.data.token);
+      localStorage.setItem("token", result?.data?.token);
+      localStorage.setItem("user", JSON.stringify(result?.data?.user));
+
       router.push("/admin-dashboard");
       setEmail("");
       setPassword("");
