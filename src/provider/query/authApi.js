@@ -41,6 +41,13 @@ export const authApi = createApi({
         }),
       }),
 
+      getDoctorMySite: builder.query({
+        query: () => ({
+          url: "/api/v1/doctor/profile",
+          method: "GET",
+        }),
+      }),
+
       getAllSubscriptions: builder.query({
         query: () => ({
           url: "/api/v1/admin/plans",
@@ -56,4 +63,5 @@ export const {
   useGetAllUserQuery,
   useGetAllSubscriptionsQuery,
   useAddDoctorMutation,
+  useGetDoctorMySiteQuery,
 } = authApi;

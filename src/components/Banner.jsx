@@ -44,9 +44,11 @@ export default function Banner() {
             Use Medicare Pro to manage your assistants and optimize your
             practice operations efficiently.
           </p>
-          <button className="hover:scale-105 transition ease-in-out btn btn-primary">
-            Doctor Login
-          </button>
+          <Link href="/doctor/login">
+            <button className="hover:scale-105 transition ease-in-out btn btn-primary">
+              Doctor Login
+            </button>
+          </Link>
         </div>
       </div>
     </section>
