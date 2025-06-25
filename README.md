@@ -89,8 +89,6 @@ https://medicare-pro-backend.vercel.app/
 localStorage.setItem("token", YOUR_TOKEN);
 ```
 
-> 📬 Full Postman Collection: [Click here to view](https://www.postman.com/trilia-devshare-team/frontend-task/collection/5g3lx5c/doctor-managements?action=share&source=copy-link&creator=45899895)
-
 ---
 
 ## ⭐️ Support & Feedback
